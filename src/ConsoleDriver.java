@@ -14,6 +14,7 @@ public class ConsoleDriver {
         }
         catch(InputMismatchException e){
             System.out.println("Invalid type. Please enter an integer.");
+            return;
         }
 
         for (int i = 0; i < numofvehicles; i++){
@@ -39,11 +40,32 @@ public class ConsoleDriver {
 
             switch (choice){
                 case 1:
+                    System.out.println("You created a Bus");
+                    vehicles.add(new Bus(capacity, passengers, startPoint, endPoint));
+                    break;
                 case 2:
+                    System.out.println("You created a Jeepney");
+                    vehicles.add(new Jeepney(capacity, passengers, startPoint, endPoint));
+                    break;
                 case 3:
-                    System.out.println();
+                    System.out.println("You created a Helicopter");
+                    vehicles.add(new Helicopter(capacity, passengers, startPoint, endPoint));
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+                    i--;
             }
         }
 
+        System.out.println("\nVehicle Information:\n");
+        for (Vehicle vehicle : vehicles) {
+            System.out.println("Type: " + );
+            System.out.println("Capacity: " + vehicle.getCapacity());
+            System.out.println("Start Point: " + vehicle.getStartPoint());
+            System.out.println("End Point: " + vehicle.getEndPoint());
+
+
+            System.out.println();
+        }
     }
 }
