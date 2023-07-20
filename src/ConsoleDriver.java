@@ -8,24 +8,6 @@ public class ConsoleDriver {
         ArrayList<Vehicle> vehicles = new ArrayList<>();
         Scanner sc = new Scanner(System.in);
         System.out.println("How many vehicles would you like to create? ");
-        int numofvehicles = 0;
-        try{
-            numofvehicles = sc.nextInt();
-        }
-        catch(InputMismatchException e){
-            System.out.println("Invalid type. Please enter an integer.");
-        }
-
-        for (int n: numofvehicles){
-            System.out.println("Please choose type of vehicle: ");
-            int choice = 0;
-            try{
-                choice = sc.nextInt();
-            }
-            catch(InputMismatchException e){
-
-            }
-        }
 
     }
 }
