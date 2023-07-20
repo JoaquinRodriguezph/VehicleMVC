@@ -1,7 +1,9 @@
+import java.util.ArrayList;
+
 public abstract class Vehicle {
     protected Vehicle(int capacity, int passengers, String startPoint, String endPoint) {
         this.CAPACITY = capacity;
-        this.passengers = passengers;
+        this.passengers = new ArrayList<Passenger>();
         this.startPoint = startPoint;
         this.endPoint = endPoint;
     }
@@ -10,7 +12,7 @@ public abstract class Vehicle {
         return CAPACITY;
     }
 
-    public int getPassengers() {
+    public ArrayList<Passenger> getPassengers() {
         return passengers;
     }
 
@@ -22,8 +24,17 @@ public abstract class Vehicle {
         return startPoint;
     }
 
-    private final int CAPACITY;
-    private String startPoint;
-    private String endPoint;
-    private int passengers;
+    public boolean addPassenger(Passenger passenger) {
+        boolean b = passengers.size() < CAPACITY;
+
+        if (b)
+            passengers.add(passenger);
+
+        return b;
+    }
+
+    protected final int CAPACITY;
+    protected String startPoint;
+    protected String endPoint;
+    protected ArrayList<Passenger> passengers;
 }
