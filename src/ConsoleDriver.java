@@ -28,6 +28,21 @@ public class ConsoleDriver {
             catch(InputMismatchException e){
                 System.out.println("Please input only from 1 to 4");
             }
+            System.out.println("Enter the capacity of the vehicle: ");
+            int capacity = sc.nextInt();
+            System.out.println("Enter the number of passengers: ");
+            int passengerCount = sc.nextInt();
+            System.out.println("Enter the start point: ");
+            String startPoint = sc.next();
+            System.out.println("Enter the end point");
+            String endPoint = sc.next();
+
+            switch (choice){
+                case 1:
+                case 2:
+                case 3:
+                    System.out.println();
+            }
         }
 
     }
