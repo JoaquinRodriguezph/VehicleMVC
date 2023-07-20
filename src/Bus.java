@@ -18,6 +18,6 @@ public class Bus extends Vehicle implements Public{
         }
         passengers = passengerArrayList;
 
-        return 30;
+        return sum;
     }
 }
