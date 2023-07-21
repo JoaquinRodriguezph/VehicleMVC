@@ -1,5 +1,4 @@
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
 
 
 public class ConsoleDriver {
@@ -123,8 +122,19 @@ public class ConsoleDriver {
                                                 else {
                                                     System.out.println("Traveling...");
                                                     if (vehicle instanceof Public) {
+                                                        if (vehicle instanceof Jeepney) {
+                                                            Jeepney spec = (Jeepney) vehicle;
 
+                                                        }
+                                                        else {
+                                                            Bus spec = (Bus) vehicle;
+                                                        }
+                                                        System.out.println("Fare: " + spec.travel(distance));
                                                     }
+                                                    else if (vehicle instanceof Private) {
+                                                        Helicopter spec = (Helicopter) vehicle;
+                                                    }
+                                                    System.out.println("Travel Done!");
                                                 }
                                             }
                                             catch (Exception e) {
