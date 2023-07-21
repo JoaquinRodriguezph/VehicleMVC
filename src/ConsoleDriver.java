@@ -110,11 +110,29 @@ public class ConsoleDriver {
 
                                         }
                                         case 2 -> {
-                                            //travel code
+                                            //travel code - computes fair at vehicle traveling at km distance
+                                            try {
+                                                int distance;
+
+                                                System.out.print("0 - Back\nDistance to Travel: ");
+                                                distance = sc.nextInt();
+                                                if (distance == 0)
+                                                    break;
+                                                if (distance < 0)
+                                                    throw new IllegalArgumentException("Distance Can't be Negative");
+                                                else {
+                                                    System.out.println("Traveling...");
+                                                    if (vehicle instanceof Public) {
+
+                                                    }
+                                                }
+                                            }
+                                            catch (Exception e) {
+                                                System.out.println(e.toString());
+                                            }
                                         }
                                         case 3 -> {
                                             showVehicle(vehicle);
-                                            if (vehicle instanceof Public); //potential cumulative fare code
                                         }
                                     }
                                 }
