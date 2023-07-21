@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public abstract class Vehicle {
-    protected Vehicle(int capacity, int passengers, String startPoint, String endPoint) {
+    protected Vehicle(int capacity, String startPoint, String endPoint) {
         this.CAPACITY = capacity;
         this.passengers = new ArrayList<Passenger>();
         this.startPoint = startPoint;

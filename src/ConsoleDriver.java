@@ -29,10 +29,6 @@ public class ConsoleDriver {
             catch(InputMismatchException e){
                 System.out.println("Please input only from 1 to 4");
             }
-            System.out.println("Enter the capacity of the vehicle: ");
-            int capacity = sc.nextInt();
-            System.out.println("Enter the number of passengers: ");
-            int passengerCount = sc.nextInt();
             System.out.println("Enter the start point: ");
             String startPoint = sc.next();
             System.out.println("Enter the end point");
@@ -41,15 +37,15 @@ public class ConsoleDriver {
             switch (choice){
                 case 1:
                     System.out.println("You created a Bus");
-                    vehicles.add(new Bus(capacity, passengers, startPoint, endPoint));
+                    vehicles.add(new Bus(startPoint, endPoint));
                     break;
                 case 2:
                     System.out.println("You created a Jeepney");
-                    vehicles.add(new Jeepney(capacity, passengers, startPoint, endPoint));
+                    vehicles.add(new Jeepney(startPoint, endPoint));
                     break;
                 case 3:
                     System.out.println("You created a Helicopter");
-                    vehicles.add(new Helicopter(capacity, passengers, startPoint, endPoint));
+                    vehicles.add(new Helicopter(startPoint, endPoint));
                     break;
                 default:
                     System.out.println("Invalid choice. Please try again.");

@@ -1,8 +1,8 @@
 import java.util.ArrayList;
 
 public class Jeepney extends Vehicle implements Public{
-    public Jeepney(int capacity, int passengers, String startPoint, String endPoint) {
-        super(capacity, passengers, startPoint, endPoint);
+    public Jeepney(String startPoint, String endPoint) {
+        super(20, startPoint, endPoint);
     }
 
     @Override

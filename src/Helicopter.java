@@ -1,8 +1,8 @@
 import java.util.ArrayList;
 
 public class Helicopter extends Vehicle implements Private {
-    public Helicopter(int capacity, int passengers, String startPoint, String endPoint) {
-        super(capacity, passengers, startPoint, endPoint);
+    public Helicopter(String startPoint, String endPoint) {
+        super(3, startPoint, endPoint);
     }
 
     @Override

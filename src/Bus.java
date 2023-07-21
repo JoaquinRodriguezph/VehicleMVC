@@ -1,8 +1,8 @@
 import java.util.ArrayList;
 
 public class Bus extends Vehicle implements Public{
-    public Bus(int capacity, int passengers, String startPoint, String endPoint) {
-        super(capacity, passengers, startPoint, endPoint);
+    public Bus(String startPoint, String endPoint) {
+        super(30, startPoint, endPoint);
     }
 
     @Override
