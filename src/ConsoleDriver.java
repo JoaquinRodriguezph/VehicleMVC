@@ -5,7 +5,6 @@ public class ConsoleDriver {
     public static void main(String[] args) {
         ArrayList<Vehicle> vehicles = new ArrayList<>();
         Scanner sc = new Scanner(System.in);
-        System.out.println("How many vehicles would you like to create? ");
         int option = -1;
 
         while (option != 0){
