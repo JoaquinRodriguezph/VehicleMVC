@@ -13,7 +13,8 @@ public class Bus extends Vehicle implements Public{
     public Bus(String startPoint, String endPoint) {
         super(30, startPoint, endPoint);
     }
-    /*
+    
+    /**
     * Computes the fare for passengers traveling on the bus for a given distance.
     * Passengers who travelled on a bus will be charged a flat fee of 30.
     * Passengers who travelled on a bus will be charged based on their traveled distance.
