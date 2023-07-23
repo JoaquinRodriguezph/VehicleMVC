@@ -207,6 +207,7 @@ public class ConsoleDriver {
     }
 
     public static void displayMenu(){
+        System.out.println("0 - Back");
         System.out.println("1 - Bus");
         System.out.println("2 - Jeepney");
         System.out.println("3 - Helicopter");
