@@ -12,11 +12,12 @@ public class ConsoleDriver {
             System.out.println("=====Vehicle Menu=====");
             System.out.println("0 - Exit");
             System.out.println("1 - Create Vehicle");
-            System.out.println("2 - Show All Vehicles");
-            System.out.println("3 - Choose Vehicle Action");
+            System.out.println("2 - Delete Vehicle");
+            System.out.println("3 - Show All Vehicles");
+            System.out.println("4 - Choose Vehicle Action");
             try{
                 option = sc.nextInt();
-                if (option < 0 || option > 3)
+                if (option < 0 || option > 4)
                     throw new IllegalArgumentException("Invalid Option");
 
                 switch(option) {
@@ -62,8 +63,39 @@ public class ConsoleDriver {
                         }
                     }
                     case 2 -> {
+                        int deleteOption = -1;
+                        boolean delete = false;
+                        while (deleteOption != 0) {
+                            try {
+                                if (vehicles.size() == 0) {
+                                    deleteOption = 0;
+                                    System.out.println("No Available Vehicles to Delete");
+                                }
+                                else {
+
+                                    showVehicle(vehicles);
+
+                                    System.out.print("0 - Back\nChoose Vehicle: ");
+                                    deleteOption = sc.nextInt();
+
+                                    if (deleteOption < 0 || deleteOption > vehicles.size())
+                                        throw new IllegalArgumentException("Invalid Choice");
+                                    else if (deleteOption > 0)
+                                        removeVehicle(vehicles, deleteOption - 1);
+                                }
+                            }
+                            catch(Exception e){
+                                System.out.println(e.toString());
+                            }
+                        }
+                    }
+                    case 3 -> {
                         try {
-                            showVehicle(vehicles);
+                            if (vehicles.size() == 0) {
+                                System.out.println("No Available Vehicles to be Shown");
+                            }
+                            else
+                                showVehicle(vehicles);
                         }
                         catch (Exception e) {
                             System.out.println(e.toString());
@@ -71,7 +103,7 @@ public class ConsoleDriver {
                                 sc.nextLine();
                         }
                     }
-                    case 3 -> {
+                    case 4 -> {
                         int actionChoice = -1;
 
 
@@ -80,99 +112,109 @@ public class ConsoleDriver {
                             try {
                                 if (vehicles.size() == 0) {
                                     actionChoice = 0;
-                                    throw new IllegalArgumentException("No Vehicles Has Been Created");
+                                    System.out.println("No Available Vehicles");
                                 }
+                                else {
 
-                                showVehicle(vehicles);
+                                    showVehicle(vehicles);
 
 
-                                System.out.print("0 - Back\nChoose Vehicle: ");
-                                actionChoice = sc.nextInt();
+                                    System.out.print("0 - Back\nChoose Vehicle: ");
+                                    actionChoice = sc.nextInt();
 
-                                if (actionChoice < 0 || actionChoice > vehicles.size())
-                                    throw new IllegalArgumentException("Invalid Choice");
+                                    if (actionChoice < 0 || actionChoice > vehicles.size())
+                                        throw new IllegalArgumentException("Invalid Choice");
 
-                                int vehicleChoice = actionChoice;
-                                Vehicle vehicle = vehicles.get(vehicleChoice - 1);
-                                while (actionChoice != 0) {
-                                    System.out.println("=====Vehicle Action - (" + vehicleChoice + ") " + getType(vehicle) + " ======");
-                                    System.out.println("0 - Back");
-                                    System.out.println("1 - Add Passenger");
-                                    System.out.println("2 - Travel (km)");
-                                    System.out.println("3 - Show Vehicle Details");
-                                    try {
-                                        actionChoice = sc.nextInt();
+                                    int vehicleChoice = actionChoice;
+                                    Vehicle vehicle = vehicles.get(vehicleChoice - 1);
+                                    while (actionChoice != 0) {
+                                        System.out.println("=====Vehicle Action - (" + vehicleChoice + ") " + vehicleSTR(vehicle) + " ======");
+                                        System.out.println("0 - Back");
+                                        System.out.println("1 - Add Passenger");
+                                        System.out.println("2 - Travel (km)");
+                                        System.out.println("3 - Show Vehicle Details");
+                                        try {
+                                            actionChoice = sc.nextInt();
 
-                                        if (actionChoice > 3 || actionChoice < 0)
-                                            throw new IllegalArgumentException("Invalid Option");
+                                            if (actionChoice > 3 || actionChoice < 0)
+                                                throw new IllegalArgumentException("Invalid Option");
 
-                                        switch (actionChoice) {
-                                            case 1 -> {
-                                                try {
-                                                    int distance;
-
-                                                    System.out.print("Passenger Travel Distance: ");
-                                                    distance = sc.nextInt();
-                                                    if (distance <= 0)
-                                                        throw new IllegalArgumentException("Distance Cannot be Less than or Equal to 0");
-                                                    vehicle.addPassenger(new Passenger(distance));
-                                                } catch (Exception e) {
-                                                    if (e instanceof InputMismatchException)
-                                                        sc.nextLine();
-                                                    System.out.println(e.toString());
-                                                }
-
-                                            }
-                                            case 2 -> {
-                                                //travel code - computes fair at vehicle traveling at km distance
-                                                try {
-                                                    int distance;
-
-                                                    System.out.print("0 - Back\nDistance to Travel: ");
-                                                    distance = sc.nextInt();
-                                                    if (distance == 0)
-                                                        break;
-                                                    if (distance < 0)
-                                                        throw new IllegalArgumentException("Distance Can't be Negative");
-                                                    else {
-                                                        int ePassengers, iPassengers = vehicle.getPassengers().size();
-                                                        System.out.println("Number of Passengers: " + iPassengers);
-                                                        System.out.println("Traveling...");
-                                                        if (vehicle instanceof Public) {
-                                                            if (vehicle instanceof Jeepney) {
-                                                                Jeepney spec = (Jeepney) vehicle;
-                                                                System.out.println("Travel Fare (" + distance + " KM) : " + spec.computeFair(distance) + " PHP");
-                                                            } else {
-                                                                Bus spec = (Bus) vehicle;
-                                                                System.out.println("Travel Fare (" + distance + " KM) : " + spec.computeFair(distance) + " PHP");
-                                                            }
-                                                        } else if (vehicle instanceof Private) {
-                                                            Helicopter spec = (Helicopter) vehicle;
+                                            switch (actionChoice) {
+                                                case 1 -> {
+                                                    try {
+                                                        if (vehicle.isFull()) {
+                                                            System.out.println("The " + vehicleSTR(vehicle) + " is at full capacity");
+                                                            break;
                                                         }
-                                                        ePassengers = vehicle.getPassengers().size();
+                                                        int distance;
 
-                                                        System.out.println("Travel Done!");
-                                                        if (ePassengers == iPassengers)
-                                                            System.out.println("No Passengers Has Gotten Off The " + getType(vehicle));
+                                                        System.out.print("Passenger Travel Distance: ");
+                                                        distance = sc.nextInt();
+                                                        if (distance <= 0)
+                                                            throw new IllegalArgumentException("Distance Cannot be Less than or Equal to 0");
+                                                        if (vehicle.addPassenger(new Passenger(distance)))
+                                                            System.out.println("New Passenger Added to the " + vehicleSTR(vehicle));
                                                         else
-                                                            System.out.println((iPassengers - ePassengers) + " Passenger/s Have Gotten Off The " + getType(vehicle));
-                                                        System.out.println("Current Number of Passengers in the " + getType(vehicle) + ": " + ePassengers);
-
+                                                            System.out.println("Passenger Cannot be Added to the " + vehicleSTR(vehicle));
+                                                    } catch (Exception e) {
+                                                        if (e instanceof InputMismatchException)
+                                                            sc.nextLine();
+                                                        System.out.println(e.toString());
                                                     }
-                                                } catch (Exception e) {
-                                                    if (e instanceof InputMismatchException)
-                                                        sc.nextLine();
-                                                    System.out.println(e.toString());
+
+                                                }
+                                                case 2 -> {
+                                                    //travel code - computes fair at vehicle traveling at km distance
+                                                    try {
+                                                        int distance;
+
+                                                        System.out.print("0 - Back\nDistance to Travel: ");
+                                                        distance = sc.nextInt();
+                                                        if (distance == 0)
+                                                            break;
+                                                        if (distance < 0)
+                                                            throw new IllegalArgumentException("Distance Can't be Negative");
+                                                        else {
+                                                            int ePassengers, iPassengers = vehicle.getPassengers().size();
+                                                            System.out.println("Number of Passengers: " + iPassengers);
+                                                            System.out.println("Traveling...");
+                                                            if (vehicle instanceof Public) {
+                                                                if (vehicle instanceof Jeepney) {
+                                                                    Jeepney spec = (Jeepney) vehicle;
+                                                                    System.out.println("Travel Fare (" + distance + " KM) : " + spec.computeFair(distance) + " PHP");
+                                                                } else {
+                                                                    Bus spec = (Bus) vehicle;
+                                                                    System.out.println("Travel Fare (" + distance + " KM) : " + spec.computeFair(distance) + " PHP");
+                                                                }
+                                                            } else if (vehicle instanceof Private) {
+                                                                Helicopter spec = (Helicopter) vehicle;
+                                                                spec.travel(distance);
+                                                            }
+                                                            ePassengers = vehicle.getPassengers().size();
+
+                                                            System.out.println("Travel Done!");
+                                                            if (ePassengers == iPassengers)
+                                                                System.out.println("No Passengers Has Gotten Off The " + vehicleSTR(vehicle));
+                                                            else
+                                                                System.out.println((iPassengers - ePassengers) + " Passenger/s Have Gotten Off The " + vehicleSTR(vehicle));
+                                                            System.out.println("Current Number of Passengers in the " + vehicleSTR(vehicle) + ": " + ePassengers);
+
+                                                        }
+                                                    } catch (Exception e) {
+                                                        if (e instanceof InputMismatchException)
+                                                            sc.nextLine();
+                                                        System.out.println(e.toString());
+                                                    }
+                                                }
+                                                case 3 -> {
+                                                    showVehicle(vehicle);
                                                 }
                                             }
-                                            case 3 -> {
-                                                showVehicle(vehicle);
-                                            }
+                                        } catch (Exception e) {
+                                            if (e instanceof InputMismatchException)
+                                                sc.nextLine();
+                                            System.out.println(e.toString());
                                         }
-                                    } catch (Exception e) {
-                                        if (e instanceof InputMismatchException)
-                                            sc.nextLine();
-                                        System.out.println(e.toString());
                                     }
                                 }
                             }
@@ -206,14 +248,14 @@ public class ConsoleDriver {
     }
 
     public static void showVehicle(Vehicle vehicle) {
-        System.out.println("Type: " + getType(vehicle));
+        System.out.println("Type: " + vehicleSTR(vehicle));
         System.out.println("Capacity: " + vehicle.getCapacity());
         System.out.println("Start Point: " + vehicle.getStartPoint());
         System.out.println("End Point: " + vehicle.getEndPoint());
         System.out.println("Number of Passengers: " + vehicle.getPassengers().size());
     }
 
-    public static String getType (Vehicle vehicle) {
+    public static String vehicleSTR(Vehicle vehicle) {
         String type = "Vehicle";
         if (vehicle instanceof Jeepney)
             type = "Jeepney";
@@ -223,6 +265,12 @@ public class ConsoleDriver {
             type = "Bus";
 
         return type;
+    }
+
+    public static void removeVehicle(ArrayList<Vehicle> vehicles, int index) throws IndexOutOfBoundsException{
+
+        vehicles.remove(index);
+
     }
 
 }

@@ -30,15 +30,6 @@ public abstract class Vehicle {
     }
 
     /**
-     * Gets the list of passengers currently on the vehicle.
-     *
-     * @return An ArrayList containing the passengers on the vehicle.
-     */
-    public ArrayList<Passenger> getPassengers() {
-        return passengers;
-    }
-
-    /**
      * Gets the ending point of the vehicle.
      *
      * @return The ending point of the vehicle.
@@ -56,6 +47,24 @@ public abstract class Vehicle {
         return startPoint;
     }
 
+
+    /**
+     * Gets the list of passengers currently on the vehicle.
+     *
+     * @return An ArrayList containing the passengers on the vehicle.
+     */
+    public ArrayList<Passenger> getPassengers() {
+        return passengers;
+    }
+
+    public boolean isFull() {
+        return CAPACITY == passengers.size();
+    }
+
+    public boolean isEmpty() {
+        return passengers.size() == 0;
+    }
+
     /**
      * Adds a passenger to the vehicle if there is available space.
      *
@@ -63,7 +72,7 @@ public abstract class Vehicle {
      * @return True if the passenger was added successfully, false otherwise.
      */
     public boolean addPassenger(Passenger passenger) {
-        boolean b = passengers.size() < CAPACITY;
+        boolean b = !isFull();
 
         if (b)
             passengers.add(passenger);
