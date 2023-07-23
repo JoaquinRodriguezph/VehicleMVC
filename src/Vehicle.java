@@ -57,10 +57,20 @@ public abstract class Vehicle {
         return passengers;
     }
 
+    /**
+     * Checks if the vehicle is full, all passenger seats are occupied.
+     *
+     * @return True if the vehicle is full, false otherwise.
+     */
     public boolean isFull() {
         return CAPACITY == passengers.size();
     }
 
+    /**
+     * Checks if the vehicle is empty, there are no passengers on board.
+     *
+     * @return True if the vehicle is empty, false otherwise.
+     */
     public boolean isEmpty() {
         return passengers.size() == 0;
     }
