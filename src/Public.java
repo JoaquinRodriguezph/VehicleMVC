@@ -1,6 +1,6 @@
 /**
- * The Public interface represents a public vehicle and provides a method to compute the fare
- * based on the distance traveled.
+ * The Public interface represents vehicles that are available for public transportation.
+ * Vehicles that implement this interface should provide a method to compute the fare based on the distance traveled.
  */
 public interface Public {
     /**
