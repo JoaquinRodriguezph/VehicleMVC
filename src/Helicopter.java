@@ -1,12 +1,12 @@
 import java.util.ArrayList;
 
-/*
+/**
 * The Helicopter class represents a helicopter that extends the Vehicle class and implements the Private interface.
 * It provides methods to find the travel distance for passengers traveling on the helicopter.
 */
 public class Helicopter extends Vehicle implements Private {
 
-    /*
+    /**
     * Constructs a Helicopter object with the given travelled starting point and ending point.
     *
     * @param startPoint The starting point of the helicopter's travelled distance.
@@ -16,7 +16,7 @@ public class Helicopter extends Vehicle implements Private {
         super(3, startPoint, endPoint);
     }
 
-    /*
+    /**
     * Travels a certain distance in kilometers by the helicopter and updates the distance traveled for each passenger.
     *
     * @param km The distance traveled by the helicopter in kilometers.
