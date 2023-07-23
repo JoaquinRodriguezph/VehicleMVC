@@ -21,6 +21,7 @@ public class ConsoleDriver {
 
                 switch(option) {
                     case 1 -> {
+                        displayMenu();
                         int vehicleOpt = -1;
                         while (vehicleOpt != 0) {
                             try {
@@ -205,4 +206,9 @@ public class ConsoleDriver {
         return type;
     }
 
+    public static void displayMenu(){
+        System.out.println("1 - Bus");
+        System.out.println("2 - Jeepney");
+        System.out.println("3 - Helicopter");
+    }
 }
