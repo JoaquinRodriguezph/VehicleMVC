@@ -78,8 +78,10 @@ public class ConsoleDriver {
 
                         while (actionChoice != 0) {
                             try {
-                                if (vehicles.size() == 0)
+                                if (vehicles.size() == 0) {
+                                    actionChoice = 0;
                                     throw new IllegalArgumentException("No Vehicles Has Been Created");
+                                }
 
                                 showVehicle(vehicles);
 
