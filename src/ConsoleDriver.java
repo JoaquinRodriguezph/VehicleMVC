@@ -120,6 +120,8 @@ public class ConsoleDriver {
                                                 if (distance < 0)
                                                     throw new IllegalArgumentException("Distance Can't be Negative");
                                                 else {
+                                                    int ePassengers, iPassengers = vehicle.getPassengers().size();
+                                                    System.out.println("Number of Passengers: " + iPassengers);
                                                     System.out.println("Traveling...");
                                                     if (vehicle instanceof Public) {
                                                         if (vehicle instanceof Jeepney) {
@@ -134,7 +136,15 @@ public class ConsoleDriver {
                                                     else if (vehicle instanceof Private) {
                                                         Helicopter spec = (Helicopter) vehicle;
                                                     }
+                                                    ePassengers = vehicle.getPassengers().size();
+
                                                     System.out.println("Travel Done!");
+                                                    if (ePassengers == iPassengers)
+                                                        System.out.println("No Passengers Has Gotten Off The " + getType(vehicle));
+                                                    else
+                                                        System.out.println((iPassengers - ePassengers) + " Passenger/s Have Gotten Off The " + getType(vehicle));
+                                                    System.out.println("Current Number of Passengers in the " + getType(vehicle) + ": " + ePassengers);
+
                                                 }
                                             }
                                             catch (Exception e) {
