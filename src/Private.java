@@ -1,11 +1,12 @@
 
 /**
- * The Public interface represents a public vehicle and provides a method to compute the fare
- * based on the distance traveled.
+ * The Private interface represents vehicles that are not available for public transportation.
+ * Vehicles that implement this interface should provide a method to update the distance traveled.
  */
 public interface Private {
+
     /**
-    * Computes the fare for a public vehicle based on the distance traveled in kilometers.
+    * Updates the distance traveled by the private vehicle.
     *
     * @param km The distance traveled by the public vehicle in kilometers.
     */
