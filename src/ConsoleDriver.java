@@ -124,11 +124,11 @@ public class ConsoleDriver {
                                                     if (vehicle instanceof Public) {
                                                         if (vehicle instanceof Jeepney) {
                                                             Jeepney spec = (Jeepney) vehicle;
-                                                            System.out.println("Travel Fare (" + distance + ") KM: " + spec.computeFair(distance));
+                                                            System.out.println("Travel Fare (" + distance + " KM) : " + spec.computeFair(distance));
                                                         }
                                                         else {
                                                             Bus spec = (Bus) vehicle;
-                                                            System.out.println("Travel Fare (" + distance + ") KM: " + spec.computeFair(distance));
+                                                            System.out.println("Travel Fare (" + distance + " KM) : " + spec.computeFair(distance));
                                                         }
                                                     }
                                                     else if (vehicle instanceof Private) {
